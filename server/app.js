@@ -3,11 +3,13 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
 
 const app = express();
 const PORT = 3001;
-// 可配置的主机名变量
-const HOSTNAME = 'localhost';
+
+// 动态获取的主机名/IP地址
+const HOSTNAME = '152.136.175.14'
 
 // 启用CORS
 app.use(cors());
