@@ -3,10 +3,8 @@ import { PlusOutlined, DeleteOutlined, EyeOutlined, DownloadOutlined } from '@an
 import axios from 'axios';
 import './App.css';
 import { useEffect, useState } from 'react';
-const PORT = 3001;
 
-// 动态获取的主机名/IP地址
-const HOSTNAME = '152.136.175.14'
+
 const { Dragger } = Upload;
 
 function App() {
@@ -58,7 +56,7 @@ function App() {
   const fetchImageList = async () => {
     try {
       console.log('获取服务器图片列表');
-      const response = await axios.get(`http://${HOSTNAME}:${PORT}/api/images`);
+      const response = await axios.get('https://www.saifchat.com/zoupload/api/images');
       if (response.data.success) {
         console.log('获取图片列表成功:', response.data.images.length, '张图片');
         setImageList(response.data.images);
@@ -75,7 +73,7 @@ function App() {
   const handleDeleteServerImage = async (filename) => {
     try {
       console.log('删除服务器图片:', filename);
-      const response = await axios.delete(`http://${HOSTNAME}:${PORT}/api/images/${filename}`);
+      const response = await axios.delete(`https://www.saifchat.com/zoupload/api/images/${filename}`);
       
       if (response.data.success) {
         message.success('图片删除成功');
@@ -175,7 +173,7 @@ function App() {
         });
 
         console.log('发送上传请求到服务器');
-        const response = await axios.post(`http://${HOSTNAME}:${PORT}/api/upload`, formData, {
+        const response = await axios.post('https://www.saifchat.com/zoupload/api/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

@@ -8,6 +8,11 @@ const os = require('os');
 const app = express();
 const PORT = 3001;
 
+// Hello World路由
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
+
 // 动态获取的主机名/IP地址
 const HOSTNAME = '152.136.175.14'
 
