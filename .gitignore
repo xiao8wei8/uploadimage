@@ -12,7 +12,10 @@ dist
 dist-ssr
 *.local
 
+
+
 server/uploads
+server/zhongouuploads
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
