@@ -56,7 +56,7 @@ function App() {
   const fetchImageList = async () => {
     try {
       console.log('获取服务器图片列表');
-      const response = await axios.get('https://www.saifchat.com/zoupload/api/images');
+      const response = await axios.get('http://152.136.175.14:3001/api/images');
       if (response.data.success) {
         console.log('获取图片列表成功:', response.data.images.length, '张图片');
         setImageList(response.data.images);
@@ -73,7 +73,7 @@ function App() {
   const handleDeleteServerImage = async (filename) => {
     try {
       console.log('删除服务器图片:', filename);
-      const response = await axios.delete(`https://www.saifchat.com/zoupload/api/images/${filename}`);
+      const response = await axios.delete(`http://152.136.175.14:3001/api/images/${filename}`);
       
       if (response.data.success) {
         message.success('图片删除成功');
@@ -173,7 +173,7 @@ function App() {
         });
 
         console.log('发送上传请求到服务器');
-        const response = await axios.post('https://www.saifchat.com/zoupload/api/upload', formData, {
+        const response = await axios.post('http://152.136.175.14:3001/api/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

@@ -6,13 +6,13 @@ const fs = require('fs');
 const os = require('os');
 
 const app = express();
-const PORT = 3001;
+const PORT = 3002;
+
 
 // Hello World路由
-app.get('/', (req, res) => {
+app.get('/zongouupload', (req, res) => {
   res.send('Hello World');
 });
-
 // 动态获取的主机名/IP地址
 const HOSTNAME = '152.136.175.14'
 
@@ -39,7 +39,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // 处理图片上传的路由
-app.post('/api/upload', (req, res) => {
+app.post('/zongouapi/upload', (req, res) => {
   // 添加详细的请求日志
   console.log('收到上传请求，检查请求头:', req.headers['content-type']);
   
@@ -96,8 +96,8 @@ app.post('/api/upload', (req, res) => {
       
       const uploadedFiles = files.map(file => ({
         name: file.originalname,
-        url: `http://${HOSTNAME}:${PORT}/uploads/${file.filename}`,
-        baseUrl: `http://${HOSTNAME}:${PORT}`,
+        url: `https://www.saifchat.com/zongouuploads/${file.filename}`,
+        baseUrl: `https://www.saifchat.com/zongouuploads/`,
         size: file.size,
         filename: file.filename
       }));
@@ -119,7 +119,7 @@ app.post('/api/upload', (req, res) => {
 });
 
 // 获取图片列表的路由
-app.get('/api/images', (req, res) => {
+app.get('/zongouapi/images', (req, res) => {
   try {
     console.log('收到获取图片列表请求');
     
@@ -154,7 +154,7 @@ app.get('/api/images', (req, res) => {
 });
 
 // 删除图片的路由
-app.delete('/api/images/:filename', (req, res) => {
+app.delete('/zongouapi/images/:filename', (req, res) => {
   try {
     const filename = req.params.filename;
     console.log('收到删除图片请求:', filename);
@@ -181,7 +181,7 @@ app.delete('/api/images/:filename', (req, res) => {
 });
 
 // 静态文件服务，提供上传的图片
-app.use('/uploads', express.static(uploadDir));
+app.use('/zongouuploads', express.static(uploadDir));
 
 // 启动服务器
 app.listen(PORT, () => {
